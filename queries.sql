@@ -1,6 +1,6 @@
 CREATE TABLE items (
   id SERIAL PRIMARY KEY,
-  title VARCHAR(100) NOT NULL
+  todo VARCHAR(100) NOT NULL
 );
 
-INSERT INTO items (title) VALUES ('Buy milk'), ('Finish homework');
+INSERT INTO items (todo) VALUES ('Buy milk'), ('Finish homework');

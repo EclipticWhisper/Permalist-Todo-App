@@ -7,7 +7,8 @@ The application currently supports:
 - Viewing todo items saved in PostgreSQL
 - Adding new todo items
 - Editing existing todo items
-- Serving CSS and image assets from the `public` folder
+- Completing (deleting) todo items
+- Serving CSS and JavaScript assets from the `public` folder
 
 ## Technology Stack
 
@@ -162,7 +163,7 @@ Stop the server with `Ctrl+C` in the terminal.
 | `GET` | `/` | Reads all items and displays the todo list |
 | `POST` | `/add` | Inserts a new item from the `newItem` form field |
 | `POST` | `/edit` | Updates an item using `updatedItemId` and `updatedItemTitle` |
-| `POST` | `/delete` | Route exists in the page form, but deletion is not implemented yet |
+| `POST` | `/delete` | Deletes an item using `deleteItemId` |
 
 ## Project Structure
 
@@ -175,6 +176,7 @@ Stop the server with `Ctrl+C` in the terminal.
 ├── solution.js               # Older reference implementation / scratch file
 ├── public/
 │   ├── assets/icons/         # Icons used by the page
+│   ├── js/main.js            # Client-side interactions
 │   └── styles/main.css       # Application styling
 ├── views/
 │   ├── index.ejs             # Main todo list template
@@ -236,7 +238,6 @@ PORT=4000
 
 ## Current Limitations
 
-- The checkbox submits to `/delete`, but the delete handler in `index.js` is currently empty, so checking an item does not remove it from the database.
 - There is no automated test suite yet.
 - The application is configured as a simple local project and does not include production deployment configuration.
 
