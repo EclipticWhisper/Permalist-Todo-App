@@ -48,9 +48,19 @@ app.post("/add", async (req, res) => {
     console.log(err);
   }
 });
-app.post("/edit", (req, res) => { 
-
- });
+app.post("/edit", (req, res) => {
+  const updatedItemId = req.body.updatedItemId;
+  const updatedItemTitle = req.body.updatedItemTitle;
+  db.query("UPDATE items SET todo = $1 WHERE id = $2", [updatedItemTitle, updatedItemId], (err, result) => {
+    if (err) {
+      console.error("Error updating item:", err);
+      res.status(500).send("Error updating item");
+    } else {
+      console.log(`Item with ID ${updatedItemId} updated to "${updatedItemTitle}"`);
+      res.redirect("/");
+    }
+  });
+});
 
 app.post("/delete", (req, res) => { });
 
