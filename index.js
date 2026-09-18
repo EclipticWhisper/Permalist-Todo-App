@@ -62,7 +62,18 @@ app.post("/edit", (req, res) => {
   });
 });
 
-app.post("/delete", (req, res) => { });
+app.post("/delete", (req, res) => { 
+  const deleteItemId = req.body.deleteItemId;
+  db.query("DELETE FROM items WHERE id = $1", [deleteItemId], (err, result) => {
+    if (err) {
+      console.error("Error deleting item:", err);
+      res.status(500).send("Error deleting item");
+    } else {
+      console.log(`Item with ID ${deleteItemId} deleted`);
+      res.redirect("/");
+    }
+  });
+});
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
